@@ -27,5 +27,16 @@ namespace SeleniumWebDriverDemo
         }
 
 
+        /// <summary>
+        /// Close program ('Exit' menu item event handler)
+        /// </summary>
+        private void HelpAbout_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.Owner = this;
+            about.ShowInTaskbar = false;
+            about.ShowDialog();
+        }
+
     }
 }
