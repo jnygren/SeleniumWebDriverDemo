@@ -45,6 +45,15 @@ namespace SeleniumWebDriverDemo
 
 
         /// <summary>
+        /// Google demo - Demonstrate using WebDriver to do a Google search.
+        /// </summary>
+        private void GoogleDemo_Click(object sender, RoutedEventArgs e)
+        {
+            WebAccess wa = new WebAccess();
+        }
+
+
+        /// <summary>
         /// Close program ('Exit' menu item event handler)
         /// </summary>
         private void FileExit_Click(object sender, RoutedEventArgs e)
@@ -59,6 +68,7 @@ namespace SeleniumWebDriverDemo
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("About box displayed.");
+
             About about = new About();
             about.Owner = this;
             about.ShowInTaskbar = false;
