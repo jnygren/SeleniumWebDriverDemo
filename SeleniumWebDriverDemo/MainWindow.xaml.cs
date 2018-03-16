@@ -1,6 +1,7 @@
 ﻿// App.xaml.cs
 
 using System.Windows;
+using System.Diagnostics;
 using NLog;
 
 namespace SeleniumWebDriverDemo
@@ -40,7 +41,9 @@ namespace SeleniumWebDriverDemo
         /// </summary>
         private void Window_Closed(object sender, System.EventArgs e)
         {
-            logger.Debug("---  End of Program.  ---\n");
+            string msgEnd = "---  End of Program.  ---\r\n" +
+                            "================================================================================\r\n";
+            logger.Debug(msgEnd);
         }
 
 
@@ -55,6 +58,19 @@ namespace SeleniumWebDriverDemo
 
             // Run Google demo
             wa.GoogleDemo();
+        }
+
+
+        /// <summary>
+        /// 'File - View Log' menu item handler
+        /// </summary>
+        private void ViewLog_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("In ViewLog_Click.");
+
+            NLog.Targets.FileTarget fileTarget = (NLog.Targets.FileTarget)LogManager.Configuration.FindTargetByName("file");
+            string logfile = fileTarget.FileName.Render(new LogEventInfo());
+            Process.Start(logfile.Replace("\\/", "/"));     // Open logfile in default viewer
         }
 
 

@@ -9,6 +9,7 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <MenuItem Header="_View Log" Click="ViewLog_Click" />
                 <Separator />
                 <MenuItem Header="E_xit" Click="FileExit_Click" />
             </MenuItem>
