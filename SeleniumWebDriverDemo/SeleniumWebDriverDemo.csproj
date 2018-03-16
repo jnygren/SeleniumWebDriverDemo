@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages.cs" />
     <Compile Include="WebAccess.cs" />
     <Compile Include="WebActions.cs" />
     <Page Include="About.xaml">

@@ -49,7 +49,12 @@ namespace SeleniumWebDriverDemo
         /// </summary>
         private void GoogleDemo_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("In GoogleDemo_Click.");
+
             WebAccess wa = new WebAccess();
+
+            // Run Google demo
+            wa.GoogleDemo();
         }
 
 
