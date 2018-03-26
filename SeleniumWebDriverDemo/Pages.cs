@@ -61,4 +61,15 @@ namespace SeleniumWebDriverDemo
 #endif
 
     }
+
+
+    public class UIMNHome
+    {
+        public static string title = "index / Unemployment Insurance Minnesota";
+        public static By homeHeader = By.XPath("//h1[contains(text(), 'Welcome to the Minnesota Unemployment Insurance')]");
+        public static By applicants = By.XPath("//a[contains(text(), 'Applicants')]");
+
+    }
+
+
 }

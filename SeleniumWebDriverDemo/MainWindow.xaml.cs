@@ -62,6 +62,20 @@ namespace SeleniumWebDriverDemo
 
 
         /// <summary>
+        /// Unemployment Insurance Benefit Request - To practice test automation.
+        /// </summary>
+        private void UIRequest_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("In UIRequest_Click.");
+
+            WebAccess wa = new WebAccess();
+
+            // Run Google demo
+            wa.UIRequest();
+        }
+
+
+        /// <summary>
         /// 'File - View Log' menu item handler
         /// </summary>
         private void ViewLog_Click(object sender, RoutedEventArgs e)

@@ -15,6 +15,7 @@ namespace SeleniumWebDriverDemo
             "\tSelenium WebDriver Demo\r\n" +
             "Demonstrates everything I know about Selenium WebDriver.\r\n\r\n" +
             "\tToDo: \r\n" +
+            "Implement 'Request UI Benefits'. \r\n" +
             "Add config from App.config. \r\n" +
             "Add browser select. \r\n" +
             "Implement 'Save options' feature.\r\n" +

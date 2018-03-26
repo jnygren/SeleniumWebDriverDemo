@@ -77,29 +77,45 @@ namespace SeleniumWebDriverDemo
         }
 
 
+        /// <summary>
+        /// Retrieve the title of the current browser window
+        /// </summary>
+        /// <returns>The window title.</returns>
+        public static string GetTitle()
+        {
+            return Driver.Title;
+        }
+
+
         /*****************************************************************************************\
             Methods to be implemented yet
-Page.IsElementPresent(by)
-
 Page.SelectDropDownByValue(ddlDay, date.Day.ToString());
 Page.SelectDropDownByVisibleText(ddlMonth, date.Month.ToString());
 Page.GetOptionsInSelect(pageIndex);
-Page.EnterText(LoginPage.SiteId, siteid);
 Page.Click(LoginPage.NextButton);
 Page.GetText(LoginPage.OrgName)))
-Page.WaitForTheElement(LoginPage.SignInButton, 3);
 Page.CheckCheckboxesInPages(StaffMemberPage.DdlPageSelector, StaffMemberPage.GetChkBoxForStaff(staff), true);
 Page.GetTextList(StaffMemberPage.StaffInfoHeader);
 
         \*****************************************************************************************/
 
 
+        /// <summary>
+        /// Enter Text - Send text to specified field, overwriting current field contents
+        /// </summary>
+        /// <param name="field">The field to which to send the text.</param>
+        /// <param name="value">The text to be sent.</param>
         public static void EnterText(string field, string value)
         {
             EnterText(By.Name(field), value);
         }
 
 
+        /// <summary>
+        /// Enter Text - Send text to specified field, overwriting current field contents
+        /// </summary>
+        /// <param name="field">The field to which to send the text.</param>
+        /// <param name="value">The text to be sent.</param>
         public static void EnterText(By field, string value)
         {
             if (WaitForTheElement(field))
@@ -111,6 +127,12 @@ Page.GetTextList(StaffMemberPage.StaffInfoHeader);
         }
 
 
+        /// <summary>
+        /// Append Text - Send text to specified field. Do not clear field first.
+        /// </summary>
+        /// <param name="field">The field to which to send the text.</param>
+        /// <param name="value">The text to be sent.</param>
+        /// <param name="msTimeout">Delay before returning control to caller.</param>
         public static void AppendText(By field, string value, int msTimeout = 1000)
         {
             if (WaitForTheElement(field))
@@ -119,6 +141,17 @@ Page.GetTextList(StaffMemberPage.StaffInfoHeader);
                 element.SendKeys(value);
             }
             Thread.Sleep(msTimeout);
+        }
+
+
+        /// <summary>
+        /// Click specified element
+        /// </summary>
+        /// <param name="by">element to click.</param>
+        public static void Click(By by)
+        {
+            if (WaitForTheElement(by))
+                Driver.FindElement(by).Click();
         }
 
 

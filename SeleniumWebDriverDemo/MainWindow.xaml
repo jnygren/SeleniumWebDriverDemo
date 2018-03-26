@@ -25,7 +25,8 @@
 
         <Grid>
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="24" Content="Selenium WebDriver Demo" />
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Width="100" Content="Google Demo" Click="GoogleDemo_Click" />
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Width="160" Content="Google Demo" Click="GoogleDemo_Click" />
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0" Width="160" Content="UI Benefit Request" Click="UIRequest_Click" />
         </Grid>
     </DockPanel>
 </Window>
