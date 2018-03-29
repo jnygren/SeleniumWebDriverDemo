@@ -29,7 +29,6 @@ namespace SeleniumWebDriverDemo
         public void GoogleDemo()
         {
             String searchString = "Selenium";
-            String ENTER = OpenQA.Selenium.Keys.Enter;
 
             WebActions.OpenUrl(GoogleURL);
             // wait
@@ -47,13 +46,7 @@ namespace SeleniumWebDriverDemo
                 logger.Info("  Successfully reached 'Google Search' page.");
 
             // Enter search string (slowly)
-            WebActions.EnterText(GoogleSearchPage.TxtSearchText, "");
-            foreach (char key in searchString.ToCharArray())
-            {
-                WebActions.AppendText(GoogleSearchPage.TxtSearchText, "" + key, 300);
-            }
-            Thread.Sleep(2000);
-            WebActions.AppendText(GoogleSearchPage.TxtSearchText, ENTER, 100);
+            DisplayEnterText(GoogleSearchPage.TxtSearchText, searchString, true);
             Thread.Sleep(2000);
 
             // Check for page title
@@ -142,9 +135,9 @@ namespace SeleniumWebDriverDemo
 
             // Enter User Name (SSN) & Password
             WebActions.Click(UIMNLogin.userId);
-            WebActions.EnterText(UIMNLogin.userId, userSSN);
+            DisplayEnterText(UIMNLogin.userId, userSSN);
             WebActions.Click(UIMNLogin.password);
-            WebActions.EnterText(UIMNLogin.password, password);
+            DisplayEnterText(UIMNLogin.password, password);
             WebActions.Click(UIMNLogin.btnLogin);
             Thread.Sleep(2000);
             #endregion
@@ -167,5 +160,32 @@ namespace SeleniumWebDriverDemo
             Thread.Sleep(5000);
             WebActions.CloseBrowser();
         }
+
+
+        #region Helper Methods
+
+        /// <summary>
+        /// Display EnterText - Enter text into field one character at a time.
+        /// </summary>
+        /// <param name="by">Field to enter text to.</param>
+        /// <param name="searchString">Text to enter.</param>
+        /// <param name="sendEnter">If true, send 'Enter' after text string.</param>
+        private static void DisplayEnterText(OpenQA.Selenium.By by, string searchString, bool sendEnter = false)
+        {
+            String ENTER = OpenQA.Selenium.Keys.Enter;
+
+            WebActions.EnterText(by, "");
+            foreach (char key in searchString.ToCharArray())
+            {
+                WebActions.AppendText(by, "" + key, 300);
+            }
+            Thread.Sleep(1000);
+
+            if (sendEnter)
+                WebActions.AppendText(by, ENTER, 100);
+        }
+
+
+        #endregion
     }
 }
