@@ -33,6 +33,18 @@ namespace SeleniumWebDriverDemo
 
 
         /// <summary>
+        /// For Debug - I just need a place to test things at the driver level.
+        /// </summary>
+        /// <param name="by">By parameter (optional)</param>
+        public static void ForDebug(By by = null)
+        {
+            IWebElement e = Driver.FindElement(by);
+            string tag = e.TagName;
+            string text = e.Text;
+        }
+
+        
+        /// <summary>
         /// Open web page in browser
         /// </summary>
         /// <param name="url">URL of page to be opened.</param>
@@ -155,6 +167,20 @@ Page.GetTextList(StaffMemberPage.StaffInfoHeader);
         }
 
 
+        /// <summary>
+        /// Get Text - Retrieve the text content of an element.
+        /// </summary>
+        /// <param name="by">The element to retrieve text from.</param>
+        /// <returns>The text contained in the element.</returns>
+        public static string GetText(By by)
+        {
+            if (IsElementPresent(by))
+                return Driver.FindElement(by).Text;
+
+            return null;
+        }
+
+        
         /// <summary>
         /// Close the browser, quit.
         /// </summary>
