@@ -124,6 +124,18 @@ namespace SeleniumWebDriverDemo
             pageTitle = WebActions.GetTitle();
             if (pageTitle.Contains(UIMNLogin.title))
                 logger.Info(string.Format("Found page title \"{0}\".", pageTitle));
+            else if (pageTitle.Contains(UIMNRestricted.title))
+            {
+                string msg = "The Unemployment Benefits System is currently not available.\r\n" +
+                                "Normal hours of operation are between 6 a.m.and 6 p.m.Central Time, Monday through Friday.\r\n\r\n" +
+                                "The 'UI Benefit Request' demo will now end.";
+
+                Thread.Sleep(3000);
+                WebActions.CloseBrowser();
+                MessageBox.Show(msg, UIMNRestricted.title);
+                logger.Warn(msg);
+                return;
+            }
             else
                 logger.Error(string.Format("Wrong page Title. Expected {0}, found {1}", UIMNLogin.title, pageTitle));
 

@@ -64,6 +64,13 @@ namespace SeleniumWebDriverDemo
     }
 
 
+    public class UIMNRestricted
+    {
+        public static string title = "Access Restricted";
+        public static By restrictedHeader = By.XPath("//strong[contains(text(), 'The Unemployment Benefits System is currently not available.')]");
+    }
+
+
     public class UIMNLogin
     {
         public static string title = "Applicant login";
