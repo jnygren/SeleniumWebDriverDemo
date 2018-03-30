@@ -15,6 +15,8 @@ namespace SeleniumWebDriverDemo
 {
     class WebActions
     {
+        enum Browsers { Default, Firefox, Chrome, IE, Other };
+
         private static IWebDriver _driver = null;
         private static IWebDriver Driver
         {
@@ -22,16 +24,49 @@ namespace SeleniumWebDriverDemo
             {
                 if (_driver == null)
                 {
-                    //_driver = new FirefoxDriver();
-                    _driver = new ChromeDriver();
-                    //_driver = new InternetExplorerDriver();
+                    switch (_browser)
+                    {
+                        case Browsers.Firefox:
+                            _driver = new FirefoxDriver();
+                            break;
+                        case Browsers.Chrome:
+                            _driver = new ChromeDriver();
+                            break;
+                        case Browsers.IE:
+                        //_driver = new InternetExplorerDriver();
+                        case Browsers.Other:
+                        case Browsers.Default:
+                        default:
+                            throw new NotImplementedException("Support for selected browser has not yet been implemented.");
+                            break;
+                    }
                 }
                 return _driver;
             }
             set { _driver = value; }
         }
 
+        private static Browsers _browser;
+
         public delegate By GetBy(string element);
+
+
+        /// <summary>
+        /// Select the browser to use for WebDriver
+        /// </summary>
+        /// <param name="browser">Default, Firefox, Chrome, IE, ...</param>
+        public static void SelectBrowser(string browser)
+        {
+            Driver = null;  // Reset
+
+            browser = browser.ToUpper();
+            if (browser.Contains("CHROME"))
+                _browser = Browsers.Chrome;
+            else if (browser.Contains("FIREFOX"))
+                _browser = Browsers.Firefox;
+            else
+                _browser = Browsers.Default;
+        }
 
 
         /// <summary>
