@@ -6,9 +6,10 @@
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+//using OpenQA.Selenium.IE;
 using System.Threading;
 using System.Linq;
-//using OpenQA.Selenium.IE;
 
 namespace SeleniumWebDriverDemo
 {
@@ -21,7 +22,8 @@ namespace SeleniumWebDriverDemo
             {
                 if (_driver == null)
                 {
-                    _driver = new FirefoxDriver();
+                    //_driver = new FirefoxDriver();
+                    _driver = new ChromeDriver();
                     //_driver = new InternetExplorerDriver();
                 }
                 return _driver;
