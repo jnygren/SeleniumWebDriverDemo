@@ -93,7 +93,7 @@ namespace SeleniumWebDriverDemo
 
             // Click 'Applicants'
             WebActions.Click(UIMNHome.applicants);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             #endregion
 
             // ==============================        UIMN Applicants page        ==============================
@@ -114,7 +114,7 @@ namespace SeleniumWebDriverDemo
 
             // Click 'Request a Benefit Payment'
             WebActions.Click(UIMNApplicants.request);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             #endregion
 
             // ==============================           UIMN Login page          ==============================
@@ -151,25 +151,185 @@ namespace SeleniumWebDriverDemo
             WebActions.Click(UIMNLogin.password);
             DisplayEnterText(UIMNLogin.password, password);
             WebActions.Click(UIMNLogin.btnLogin);
+            Thread.Sleep(1000);
+            #endregion
+
+            // ==============================     UIMN Benefit Account page      ==============================
+            #region Benefit Account page
+
+            //// Check for page title
+            //pageTitle = WebActions.GetTitle();
+            //if (pageTitle.Contains(UIMNBenAcct.title))
+            //    logger.Info(string.Format("Found page title \"{0}\".", pageTitle));
+            //else
+            //    logger.Error(string.Format("Wrong page Title. Expected {0}, found {1}", UIMNBenAcct.title, pageTitle));
+
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNBenAcct.sectBAHomeHeader, 10))
+                logger.Info("  Successfully reached 'UIMN Benefit Account' page.");
+            else if (WebActions.WaitForTheElement(UIMNLogin.invalidEntry))
+            {
+                string msg = "The username (SSN) and/or password you entered are not valid.\r\n" +
+                                "Use valid credentials and run the demo again.\r\n\r\n" +
+                                "The 'UI Benefit Request' demo will now end.";
+
+                Thread.Sleep(3000);
+                WebActions.CloseBrowser();
+                MessageBox.Show(msg, "Invalid Entry");
+                logger.Warn(msg);
+                return;
+            }
+            else
+                logger.Warn("Benefit Account page header not found.");
+
+            // Confirm that there are weeks for which benefit payment may be requested
+            if (WebActions.WaitForTheElement(UIMNBenAcct.haveUnrequested) &&
+                WebActions.WaitForTheElement(UIMNBenAcct.requestPayment))
+            {
+                string unrequestedWeek = WebActions.GetText(UIMNBenAcct.unrequestedWeek);
+                logger.Info("  Attempting to request payment for " + unrequestedWeek + ".");
+
+                // Click 'Request a Benefit Payment'
+                WebActions.Click(UIMNBenAcct.requestPayment);
+                Thread.Sleep(2000);
+            }
+            else
+            {
+                logger.Warn("There appears to be no weeks to claim.");
+                string msg = "It appears you have no weeks for which you may claim benefit payments.\r\n\r\n" +
+                                "The 'UI Benefit Request' demo has logged out, and will now end.";
+
+                Thread.Sleep(2000);
+                WebActions.Click(UIMNMaster.logoff);
+                Thread.Sleep(2000);
+                WebActions.CloseBrowser();
+                MessageBox.Show(msg, UIMNBenAcct.title);
+                logger.Warn(msg);
+                return;
+            }
+
+            #endregion
+
+            // ==============================   UIMN Request Payment Home page   ==============================
+            #region Request Payment Home page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNRequestPayHome.sectRequestPayHomeHeader))
+                logger.Info("  Successfully reached 'UIMN Request Payment Home' page.");
+            else
+                logger.Warn("Request Payment Home page header not found.");
+
+            // Click 'Proceed with Request Payment'
+            WebActions.Click(UIMNRequestPayHome.proceedRequest);
             Thread.Sleep(2000);
             #endregion
 
-            // ==============================           UIMN ____ page           ==============================
-            #region ____ page
+            // ==============================   UIMN Address Verification page   ==============================
+            #region Address Verification page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNAddrVerify.sectAddressVerifyHeader))
+                logger.Info("  Successfully reached 'UIMN Address Verification' page.");
+            else
+                logger.Warn("Address Verification page header not found.");
+
+            // Click 'My Info Has Not Changed'
+            WebActions.Click(UIMNAddrVerify.hasNotChanged);
+            Thread.Sleep(2000);
             #endregion
 
-            // ==============================           UIMN ____ page           ==============================
-            #region ____ page
+            // ==============================     UIMN Initial Questions page    ==============================
+            #region Initial Questions page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNInitialQs.sectInitialQuestionsHeader))
+                logger.Info("  Successfully reached 'UIMN Initial Questions' page.");
+            else
+                logger.Warn("Initial Questions page header not found.");
+
+            // Answer work search questions
+            WebActions.CheckCheckbox(UIMNInitialQs.workNo);
+            WebActions.CheckCheckbox(UIMNInitialQs.incomeNo);
+            WebActions.CheckCheckbox(UIMNInitialQs.refuseNo);
+            WebActions.CheckCheckbox(UIMNInitialQs.quitNo);
+            WebActions.CheckCheckbox(UIMNInitialQs.dischargedNo);
+            WebActions.CheckCheckbox(UIMNInitialQs.availableYes);
+            WebActions.CheckCheckbox(UIMNInitialQs.lookingYes);
+            logger.Info("Initial eligibility questions answered.");
+            Thread.Sleep(1000);
+
+            // Click 'Next'
+            WebActions.Click(UIMNInitialQs.btnNext);
+            Thread.Sleep(2000);
             #endregion
 
-            // ==============================           UIMN ____ page           ==============================
-            #region ____ page
+            // ==============================    UIMN Job Search Plan Rpt page   ==============================
+            #region Job Search Plan Reporting page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNActivityRpt.sectActivityReportingHeader))
+                logger.Info("  Successfully reached 'UIMN Job Search Activity Reporting' page.");
+            else
+                logger.Warn("Activity Reporting page header not found.");
+
+            // Click 'Next' button
+            WebActions.Click(UIMNActivityRpt.btnNext);
+            Thread.Sleep(2000);
             #endregion
 
+            // ==============================      UIMN Request Summary page     ==============================
+            #region Request Summary page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNRequestSummary.sectRequestSummaryHeader))
+                logger.Info("  Successfully reached 'UIMN Request Summary' page.");
+            else
+                logger.Warn("Request Summary page header not found.");
 
-            //WebActions.ForDebug(UIMNLogin.userId);
-
+            // Print request summary
+#if PRINT_SUMMARY
+            //WebActions.ForDebug(UIMNRequestSummary.requestForm);
+            //WebActions.ForDebug(UIMNRequestSummary.printTable);
+            //WebActions.ForDebug(UIMNRequestSummary.lnkPrint);
+            WebActions.Click(UIMNRequestSummary.lnkPrint);
             Thread.Sleep(5000);
+            // Confirm correct page
+            WebActions.ForDebug(UIMNRequestSummary.imgAny);
+            //WebActions.ForDebug(UIMNRequestSummary.imgClose);
+            //WebActions.ForDebug(UIMNRequestSummary.btnx);
+            WebActions.ForDebug(UIMNRequestSummary.btnPrintClose);
+            if (WebActions.WaitForTheElement(UIMNRequestSummary.btnPrintClose))
+                logger.Info("  Successfully reached 'UIMN Request Summary Print' page.");
+            else
+                logger.Warn("Request Summary Print page 'Close' link not found.");
+            WebActions.Click(UIMNRequestSummary.btnPrintClose);
+            Thread.Sleep(2000);
+#endif
+
+            // Submit request for weekly benefit payment
+            WebActions.Click(UIMNRequestSummary.btnSubmit);
+            Thread.Sleep(2000);
+            #endregion
+
+            // ==============================   UIMN Request Confirmation page   ==============================
+            #region Request Confirmation page
+            // Confirm correct page
+            if (WebActions.WaitForTheElement(UIMNRequestConfirm.sectRequestConfirmationHeader))
+                logger.Info("  Successfully reached 'UIMN Request Confirmation' page.");
+            else
+                logger.Warn("Request Confirmation page header not found.");
+
+            // Print a copy of the Request Confirmation
+            //WebActions.Click(UIMNRequestConfirm.lnkReturn);
+
+            // Return to Account Home Page
+            WebActions.Click(UIMNRequestConfirm.lnkReturn);
+            Thread.Sleep(2000);
+            #endregion
+
+            // Wait! Don't log off until you save confirmation page info.
+            //WebActions.ForDebug(UIMNRequestSummary.lnkPrint);
+
+            Thread.Sleep(2000);
+            // Log off
+            WebActions.Click(UIMNMaster.logoff);
+            Thread.Sleep(5000);
+            // Close
             WebActions.CloseBrowser();
         }
 
@@ -189,7 +349,7 @@ namespace SeleniumWebDriverDemo
             WebActions.EnterText(by, "");
             foreach (char key in searchString.ToCharArray())
             {
-                WebActions.AppendText(by, "" + key, 300);
+                WebActions.AppendText(by, "" + key, 100);
             }
             Thread.Sleep(1000);
 

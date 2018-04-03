@@ -168,6 +168,19 @@ Page.GetTextList(StaffMemberPage.StaffInfoHeader);
 
 
         /// <summary>
+        /// Check checkbox or radio button
+        /// </summary>
+        /// <param name="by">Element to check or uncheck.</param>
+        /// <param name="check">'true' (default) to check; 'false' to clear.</param>
+        public static void CheckCheckbox(By by, bool check = true)
+        {
+            if (WaitForTheElement(by))
+                if (Driver.FindElement(by).Selected != check)
+                    Click(by);
+        }
+
+
+        /// <summary>
         /// Get Text - Retrieve the text content of an element.
         /// </summary>
         /// <param name="by">The element to retrieve text from.</param>
