@@ -26,6 +26,11 @@ namespace SeleniumWebDriverDemo
             "DONE - Add Webdriver \r\n" +
             "DONE - Implement 'Display Logfile' feature.\r\n" +
             " \r\n" +
+            " \r\n" +
+            "If you get the error \"Could not resolve mscorlib for target framework '.NETFramework...\" \r\n" +
+            "when trying to open 'Settings.settings', just rebuild your solution. \r\n" +
+            " \r\n" +
+            " \r\n" +
             " \r\n";
         public string AssemblyTitle { get { return Assembly.GetExecutingAssembly().GetName().Name; } }
         public string AssemblyVersion { get { return string.Format("Version: {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString()); } }

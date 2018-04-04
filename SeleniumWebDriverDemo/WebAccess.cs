@@ -19,7 +19,11 @@ namespace SeleniumWebDriverDemo
         /// </summary>
         public WebAccess()
         {
-            //GoogleDemo();
+            string browser = Properties.Settings.Default.Browser;
+            //logger.Info("In WebAccess() - browser = " + browser + ".");
+
+            // Select the specified browser
+            WebActions.SelectBrowser(browser);
         }
 
 
