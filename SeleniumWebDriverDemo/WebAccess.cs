@@ -70,8 +70,8 @@ namespace SeleniumWebDriverDemo
         /// </summary>
         public void UIRequest()
         {
-            String userSSN = "000000000";
-            String password = "mmmmmmmm";
+            String userSSN = Properties.Settings.Default.Username;
+            String password = Properties.Settings.Default.Password;
 
             logger.Info("In WebAccess.UIRequest().");
 

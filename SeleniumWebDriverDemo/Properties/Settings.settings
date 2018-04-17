@@ -5,5 +5,11 @@
     <Setting Name="Browser" Type="System.String" Scope="User">
       <Value Profile="(Default)">Firefox</Value>
     </Setting>
+    <Setting Name="Username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">000000000</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">password</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

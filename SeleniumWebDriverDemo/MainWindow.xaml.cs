@@ -1,5 +1,6 @@
 ﻿// App.xaml.cs
 
+using System;
 using System.Windows;
 using System.Diagnostics;
 using NLog;
@@ -54,10 +55,20 @@ namespace SeleniumWebDriverDemo
         {
             logger.Info("In GoogleDemo_Click.");
 
-            WebAccess wa = new WebAccess();
+            try
+            {
+                WebAccess wa = new WebAccess();
 
-            // Run Google demo
-            wa.GoogleDemo();
+                // Run Google demo
+                wa.GoogleDemo();
+            }
+            catch (Exception ex)
+            {
+                string exMessage = string.Format("Exception caught: {0}.", ex.Message);
+                logger.Error(exMessage);
+
+                MessageBox.Show(exMessage, "Error");
+            }
         }
 
 
@@ -68,10 +79,20 @@ namespace SeleniumWebDriverDemo
         {
             logger.Info("In UIRequest_Click.");
 
-            WebAccess wa = new WebAccess();
+            try
+            {
+                WebAccess wa = new WebAccess();
 
-            // Run Google demo
-            wa.UIRequest();
+                // Run Unemployment Insurance Request demo
+                wa.UIRequest();
+            }
+            catch (Exception ex)
+            {
+                string exMessage = string.Format("Exception caught: {0}.", ex.Message);
+                logger.Error(exMessage);
+
+                MessageBox.Show(exMessage, "Error");
+            }
         }
 
 
@@ -98,7 +119,31 @@ namespace SeleniumWebDriverDemo
 
 
         /// <summary>
-        /// Close program ('About' menu item event handler)
+        /// Options ('Options' menu item event handler)
+        /// </summary>
+        private void ToolsOptions_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("Options menu displayed.");
+
+            //string browser = Properties.Settings.Default.Browser;
+            //UserOptions options = new SeleniumWebDriverDemo.UserOptions("One", "Two", "Three");
+            UserOptions options = new UserOptions(Properties.Settings.Default.Browser, Properties.Settings.Default.Username, Properties.Settings.Default.Password);
+            options.Owner = this;
+            options.ShowInTaskbar = false;
+            if ((bool)options.ShowDialog())
+            {
+                logger.Warn(String.Format("User options changed: Browser = {0}, User = {1}, PW = {2}.", options.Browser, options.UIUserName, options.UIPassword));
+
+                Properties.Settings.Default.Browser = options.Browser;
+                Properties.Settings.Default.Username = options.UIUserName;
+                Properties.Settings.Default.Password = options.UIPassword;
+                Properties.Settings.Default.Save();  // Set properties.
+            }
+        }
+
+
+        /// <summary>
+        /// About ('About' menu item event handler)
         /// </summary>
         private void HelpAbout_Click(object sender, RoutedEventArgs e)
         {

@@ -13,6 +13,9 @@
                 <Separator />
                 <MenuItem Header="E_xit" Click="FileExit_Click" />
             </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Options" Click="ToolsOptions_Click" />
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Command="Help"/>
                 <MenuItem Header="_About Selenium WebDriver Demo" Click="HelpAbout_Click" />

@@ -15,7 +15,9 @@ namespace SeleniumWebDriverDemo
 {
     class WebActions
     {
-        enum Browsers { Default, Firefox, Chrome, IE, Other };
+        enum Browsers { Default, Firefox, Chrome, IE, Edge, Other };
+
+        private static Browsers _browser;
 
         private static IWebDriver _driver = null;
         private static IWebDriver Driver
@@ -34,19 +36,18 @@ namespace SeleniumWebDriverDemo
                             break;
                         case Browsers.IE:
                         //_driver = new InternetExplorerDriver();
+                        case Browsers.Edge:
                         case Browsers.Other:
                         case Browsers.Default:
                         default:
                             throw new NotImplementedException("Support for selected browser has not yet been implemented.");
-                            break;
+                            //break;  // Unreachable code after a 'throw'.
                     }
                 }
                 return _driver;
             }
             set { _driver = value; }
         }
-
-        private static Browsers _browser;
 
         public delegate By GetBy(string element);
 
@@ -64,6 +65,10 @@ namespace SeleniumWebDriverDemo
                 _browser = Browsers.Chrome;
             else if (browser.Contains("FIREFOX"))
                 _browser = Browsers.Firefox;
+            else if (browser.Contains("IE"))
+                _browser = Browsers.IE;
+            else if (browser.Contains("EDGE"))
+                _browser = Browsers.Edge;
             else
                 _browser = Browsers.Default;
         }
