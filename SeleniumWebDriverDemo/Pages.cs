@@ -42,7 +42,8 @@ namespace SeleniumWebDriverDemo
 
     public class UIMNHome
     {
-        public static string title = "index / Unemployment Insurance Minnesota";
+        //public static string title = "index / Unemployment Insurance Minnesota";  // Page title changed.
+        public static string title = "Minnesota Unemployment Insurance / Unemployment Insurance Minnesota";
         public static By homeHeader = By.XPath("//h1[contains(text(), 'Welcome to the Minnesota Unemployment Insurance')]");
         public static By applicants = By.XPath("//a[contains(text(), 'Applicants')]");
 
@@ -71,8 +72,8 @@ namespace SeleniumWebDriverDemo
         public static By sectionHeader = By.XPath("//td[contains(text(), 'Unemployment Insurance Benefits System')]");
 
         //public static By userId = By.Id("userId");    // There are 2 elements with this Id.
-        public static By userId = By.XPath("//table/tbody/tr/td/strong[contains(text(), 'Existing Applicants')]/../../..//input[@Id='userId']");
-        public static By password = By.XPath("//table/tbody/tr/td/strong[contains(text(), 'Existing Applicants')]/../../..//input[@Id='password']");
+        public static By userId = By.XPath("//table/tbody/tr/td/strong[contains(text(), 'Existing Applicants')]/../../..//input[@id='userId']");
+        public static By password = By.XPath("//table/tbody/tr/td/strong[contains(text(), 'Existing Applicants')]/../../..//input[@id='password']");
         public static By btnLogin = By.XPath("//table/tbody/tr/td/strong[contains(text(), 'Existing Applicants')]/../../..//input[@name='action.login.login.null']");
 
         public static By invalidEntry = By.XPath("//li[contains(text(), 'Invalid entry')]");
