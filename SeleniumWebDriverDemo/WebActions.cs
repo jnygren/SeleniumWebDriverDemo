@@ -10,6 +10,7 @@ using OpenQA.Selenium.Chrome;
 //using OpenQA.Selenium.IE;
 using System.Threading;
 using System.Linq;
+using System.IO;
 
 namespace SeleniumWebDriverDemo
 {
@@ -235,7 +236,35 @@ Page.GetTextList(StaffMemberPage.StaffInfoHeader);
             return null;
         }
 
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="screenshotFile">File path were screen shot will be saved.</param>
+        /// <returns>Full path where screen shot file is saved.</returns>
+        public static string PrintScreen(string screenshotFile = "SS.Png")
+        {
+            // Save a screen shot.
+            string ssExt = Path.GetExtension(screenshotFile).ToUpper();
+            ScreenshotImageFormat ssiFormat = ScreenshotImageFormat.Png;
+
+            switch (ssExt)
+            {
+                case "JPG":
+                    ssiFormat = ScreenshotImageFormat.Jpeg;
+                    break;
+                default:    // If not 'jpg', then make it 'png'.
+                    ssiFormat = ScreenshotImageFormat.Png;
+                    Path.ChangeExtension(screenshotFile, "png");
+                    break;
+            }
+
+            ((ITakesScreenshot)Driver).GetScreenshot().SaveAsFile(screenshotFile, ssiFormat);
+
+            return Path.GetFullPath(screenshotFile);
+        }
+
+
         /// <summary>
         /// Close the browser, quit.
         /// </summary>

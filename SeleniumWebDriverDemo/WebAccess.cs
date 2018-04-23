@@ -320,6 +320,8 @@ namespace SeleniumWebDriverDemo
 
             // Print a copy of the Request Confirmation
             //WebActions.Click(UIMNRequestConfirm.lnkReturn);
+            string screenshotPath = WebActions.PrintScreen("..\\..\\..\\Request Confirmation Page.png");
+            logger.Info(string.Format("Benefit Request Confirmation Page screenshot saved to: {0}.", screenshotPath));
 
             // Return to Account Home Page
             WebActions.Click(UIMNRequestConfirm.lnkReturn);
