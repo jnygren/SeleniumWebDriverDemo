@@ -15,11 +15,9 @@ namespace SeleniumWebDriverDemo
             "\tSelenium WebDriver Demo\r\n" +
             "Demonstrates (almost) everything I know about Selenium WebDriver.\r\n\r\n" +
             "\tToDo: \r\n" +
-            "Add Scroll bars on 'About' box.\r\n" +
             "Add IE browser support.\r\n" +
             "Implement 'Default' browser detection.\r\n" +
             "Add 'Help'.\r\n" +
-            "Add installer (Setup) project.\r\n" +
             "Add program icon.\r\n" +
             " \r\n" +
             "DONE - Add NLog logging. \r\n" +
@@ -31,6 +29,8 @@ namespace SeleniumWebDriverDemo
             "DONE - Implement 'Save options' feature.\r\n" +
             "DONE - Fix bug preventing UI Login with Chrome.\r\n" +
             "DONE - Implement 'Print Screen' for confirmation page.\r\n" +
+            "DONE - Add Scroll bars on 'About' box.\r\n" +
+            "DONE - Add installer (Setup) project.\r\n" +
             " \r\n" +
             " \r\n" +
             "If you get the error \"Could not resolve mscorlib for target framework '.NETFramework...\" \r\n" +

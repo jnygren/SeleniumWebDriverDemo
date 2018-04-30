@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWebDriverDemo", "SeleniumWebDriverDemo\SeleniumWebDriverDemo.csproj", "{7B59237D-BD10-498E-B839-6BCA5E8BFC91}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{CDCF5AF0-7A52-47B5-AC1D-00648DCC1AE3}"
+	ProjectSection(SolutionItems) = preProject
+		Setup\SeleniumWebDriverDemo.iss = Setup\SeleniumWebDriverDemo.iss
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
