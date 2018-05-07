@@ -67,7 +67,8 @@ namespace SeleniumWebDriverDemo
                 string exMessage = string.Format("Exception caught: {0}.", ex.Message);
                 logger.Error(exMessage);
 
-                MessageBox.Show(exMessage, "Error");
+                this.Activate();
+                MessageBox.Show(exMessage, "Error: Exception in GoogleDemo()");
             }
         }
 
@@ -91,7 +92,33 @@ namespace SeleniumWebDriverDemo
                 string exMessage = string.Format("Exception caught: {0}.", ex.Message);
                 logger.Error(exMessage);
 
+                this.Activate();
                 MessageBox.Show(exMessage, "Error");
+            }
+        }
+
+
+        /// <summary>
+        /// Print-Screen demo - Demonstrate using WebDriver to do a screen print.
+        /// </summary>
+        private void PrintDemo_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("In PrintDemo_Click.");
+
+            try
+            {
+                WebAccess wa = new WebAccess();
+
+                // Run PrintScreen demo
+                wa.PrintDemo();
+            }
+            catch (Exception ex)
+            {
+                string exMessage = string.Format("Exception caught: {0}.", ex.Message);
+                logger.Error(exMessage);
+
+                this.Activate();
+                MessageBox.Show(exMessage, "Error: Exception in PrintDemo()");
             }
         }
 

@@ -31,6 +31,7 @@ namespace SeleniumWebDriverDemo
             "DONE - Implement 'Print Screen' for confirmation page.\r\n" +
             "DONE - Add Scroll bars on 'About' box.\r\n" +
             "DONE - Add installer (Setup) project.\r\n" +
+            "DONE - Add 'Print Screen' test/demo feature.\r\n" +
             " \r\n" +
             " \r\n" +
             "If you get the error \"Could not resolve mscorlib for target framework '.NETFramework...\" \r\n" +

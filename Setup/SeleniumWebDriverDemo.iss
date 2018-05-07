@@ -13,7 +13,7 @@
 ; OutputBaseFilename - Name of setup (.exe) file.
 [Setup]
 AppName=SeleniumWebDriverDemo
-AppVersion=1.2
+AppVersion=1.2.1
 DefaultDirName={pf}\SeleniumWebDriverDemo
 DefaultGroupName=SeleniumWebDriverDemo
 SourceDir="..\SeleniumWebDriverDemo\bin\Release"

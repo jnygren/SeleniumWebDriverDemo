@@ -11,6 +11,7 @@ namespace SeleniumWebDriverDemo
     {
         private static readonly string GoogleURL = "https://www.google.com/";
         private static readonly string UIMN_URL = "http://uimn.org/uimn/";
+        private static readonly string BloomURL = "https://www.bloomingtonmn.gov/";
         private Logger logger = LogManager.GetCurrentClassLogger();
 
 
@@ -319,8 +320,8 @@ namespace SeleniumWebDriverDemo
                 logger.Warn("Request Confirmation page header not found.");
 
             // Print a copy of the Request Confirmation
-            //WebActions.Click(UIMNRequestConfirm.lnkReturn);
-            string screenshotPath = WebActions.PrintScreen("..\\..\\..\\Request Confirmation Page.png");
+            string destPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string screenshotPath = WebActions.PrintScreen(destPath + "\\Request Confirmation Page.png");
             logger.Info(string.Format("Benefit Request Confirmation Page screenshot saved to: {0}.", screenshotPath));
 
             // Return to Account Home Page
@@ -336,6 +337,32 @@ namespace SeleniumWebDriverDemo
             WebActions.Click(UIMNMaster.logoff);
             Thread.Sleep(5000);
             // Close
+            WebActions.CloseBrowser();
+        }
+
+
+        /// <summary>
+        /// Print Demo - Demonstrate 'print screen' programmatically
+        /// </summary>
+        public void PrintDemo()
+        {
+            WebActions.OpenUrl(BloomURL);
+            // wait
+            Thread.Sleep(2000);
+
+            // Check for page title
+            string pageTitle = WebActions.GetTitle();
+            if (pageTitle.Contains("Bloomington MN"))
+                logger.Info(string.Format("Found page title \"{0}\".", pageTitle));
+            else
+                logger.Error("Wrong page Title.");
+
+            // Print a copy of the current page
+            string destPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string screenshotPath = WebActions.PrintScreen(destPath + "\\Print Screen Demo Page.png");
+            logger.Info(string.Format("Print-Screen test screenshot saved to: {0}.", screenshotPath));
+
+            Thread.Sleep(5000);
             WebActions.CloseBrowser();
         }
 
